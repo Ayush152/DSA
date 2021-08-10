@@ -39,6 +39,27 @@ public:
         temp -> next = ptr;
     }
 
+    void insert_after_given_element(int data, int val){
+        node *temp = head;
+        while (temp -> data != data){
+            temp = temp -> next;
+        }
+
+        if (temp == NULL)
+        {
+            cout << "Position not found";
+        }
+        if (temp->next == NULL)
+        {
+            insert_at_the_end(val);
+            return;
+        }
+
+        node *newnode = new node(val);
+        newnode -> next = temp -> next;
+        temp -> next = newnode;
+    }
+
     void search(int data)
     {
         node *temp = head;
@@ -82,7 +103,7 @@ int main()
     int op;
     cout << "Enter number of operations" << endl;
     cin >> op;
-    cout << "1: insert_at_the_beginning, 2: insert_at_the_end, 3:traverse, 4:delete, 5:search" << endl;
+    cout << "1: insert_at_the_beginning, 2: search, 3:traverse, 4:delete, 5:insert_at_the_end, 6:insert_after_given_element" << endl;
     ll our_list;
 
     while (op--)
@@ -121,6 +142,15 @@ int main()
             cin >> element;
             our_list.insert_at_the_end(element);
             break;
+
+        case 6:
+            int val;
+            cout << "Enter the value : ";
+            cin >> val;
+            cout << "Enter the elememt after which you want to insert data : ";
+            int var;
+            cin >> var;
+            our_list.insert_after_given_element(var, val);
         }
     }
 }
